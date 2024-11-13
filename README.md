@@ -1,2 +1,2 @@
 # Technologie Aplikacji Webowych
-Labolatorium 1
+Labolatorium 2
