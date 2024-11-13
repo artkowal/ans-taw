@@ -1,2 +1,2 @@
-# TAW Lab_4
-# ans-taw
+# Akademia Tarnowska
+# Technologie Aplikacji Webowych
