@@ -7,4 +7,4 @@
 - **Lab 4** - NodeJS. Warstwa REST. Tworzenie endpointów. Praca z Postman
 - **Lab 5** - Język TypeScript
 - **Lab 6** - Konfiguracja środowiska, implementacja serwera NodeJS, TypeScript
-- **LAB 7** - Serwer NodeJS. MIddleware. MongoDB
+- **Lab 7** - Serwer NodeJS. MIddleware. MongoDB
