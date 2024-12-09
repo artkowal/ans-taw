@@ -1,2 +1,2 @@
 # Technologie Aplikacji Webowych
-Labolatorium 7
+Labolatorium 8
