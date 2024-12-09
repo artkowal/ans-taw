@@ -8,3 +8,4 @@
 - **Lab 5** - Język TypeScript
 - **Lab 6** - Konfiguracja środowiska, implementacja serwera NodeJS, TypeScript
 - **Lab 7** - Serwer NodeJS. MIddleware. MongoDB
+- **Lab 7** - Walidacja. Autoryzacja i autentykacja
