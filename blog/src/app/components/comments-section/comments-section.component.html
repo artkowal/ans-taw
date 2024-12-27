@@ -1,0 +1,10 @@
+<div class="comments-section">
+    <h3>Komentarze</h3>
+    <div *ngFor="let comment of getComments(); let i = index">
+        <p>{{ i + 1 }}. {{ comment }}</p>
+    </div>
+    <form (ngSubmit)="addComment()">
+        <textarea [(ngModel)]="commentText" name="commentText" placeholder="Dodaj komentarz"></textarea>
+        <button type="submit">Dodaj komentarz</button>
+    </form>
+</div>
