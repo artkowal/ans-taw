@@ -4,15 +4,13 @@ import {BlogItemComponent} from "../blog-item/blog-item.component";
 import {CommonModule} from "@angular/common";
 import { CommentsService } from '../../services/comments.service';
 import { CommentsSectionComponent } from '../comments-section/comments-section.component';
-import { AddPostComponent } from '../add-post/add-post.component';
-import { GalleryComponent } from '../gallery/gallery.component';
 
 
 
 @Component({
   selector: 'blog',
   standalone: true,
-  imports: [BlogItemComponent, CommonModule, CommentsSectionComponent, AddPostComponent, GalleryComponent],
+  imports: [BlogItemComponent, CommonModule, CommentsSectionComponent],
   providers: [DataService, CommentsService],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
