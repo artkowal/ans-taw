@@ -1,34 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {BlogItemComponent} from "../blog-item/blog-item.component";
 import {CommonModule} from "@angular/common";
-import { CommentsService } from '../../services/comments.service';
-import { CommentsSectionComponent } from '../comments-section/comments-section.component';
-import { AddPostComponent } from '../add-post/add-post.component';
-import { GalleryComponent } from '../gallery/gallery.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FilterTextPipe } from '../../pipes/filter-text.pipe';
 
 
 
 @Component({
   selector: 'blog',
   standalone: true,
-  imports: [BlogItemComponent, CommonModule, CommentsSectionComponent, AddPostComponent, GalleryComponent],
-  providers: [DataService, CommentsService],
+  imports: [HttpClientModule, BlogItemComponent, CommonModule, FilterTextPipe],
+  providers: [DataService],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
 })
 
 export class BlogComponent implements OnInit{
-  public items: any;
+
+  @Input() filterText: string = '';
+
+  public items$: any;
 
   constructor(private service: DataService) {
   }
 
   ngOnInit() {
-    this.items = this.service.getAll();
+    this.getPosts();
   }
 
-  refreshPosts() {
-    this.items = this.service.getAll();
+  getAll(){
+    this.service.getAll().subscribe(response => {
+      this.items$ = response;
+    });
+  }
+
+  refreshPosts(){
+    this.getPosts();
+  }
+
+  private getPosts() {
+    setTimeout(() => {
+      this.service.getAll().subscribe(items => {
+        this.items$ = items;
+
+      });
+    }, 1000)
   }
 }
+

@@ -1,2 +1,10 @@
-<blog-item-image [image]="image"></blog-item-image>
-<blog-item-text [text]="text"></blog-item-text>
+<div class="card" >
+    <blog-item-image [image]="image"/>
+    <div class="card-body">
+      <div class="card-text">
+        <blog-item-text [title]="title" [text]="text" [id]="id"/>
+      </div>
+    </div>
+    <!-- <comments-section></comments-section> -->
+</div>
+

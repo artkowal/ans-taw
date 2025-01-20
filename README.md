@@ -1,5 +1,5 @@
 # Technologie Aplikacji Webowych
-Labolatorium 9
+Labolatorium 10
 
 # Blog
 

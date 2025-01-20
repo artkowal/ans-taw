@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const posts = [
+let posts = [
   {
     "title": "Post 1",
     "text": "Baza danych przechowuje informacje w strukturalny sposób.",
@@ -68,18 +70,32 @@ const posts = [
 })
   export class DataService {
 
-  constructor() {
+    private url = 'http://localhost:3100';
+
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.url + '/api/posts');
   }
 
-  public getAll() {
-    return posts;
+  getById(id: string): Observable<any[]>{
+    return this.http.get<any[]>(this.url + '/api.posts/' + id);
   }
 
-  public addPost(post: { title: string; text: string; image: string }) {
+  addPost(title: string, text: string, image: string): Observable<any[]> {
     const newPost = {
-      ...post,
-      id: Math.random().toString(36).substr(2, 9)
+      title,
+      text,
+      image: image || 'https://1.semantic-ui.com/images/wireframe/white-image.png',
+      id: Math.random().toString(36).substring(7),
     };
+
     posts.push(newPost);
+
+    return this.http.post<any[]>(this.url + '/api/post', newPost);
   }
+
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 }

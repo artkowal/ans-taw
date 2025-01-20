@@ -11,14 +11,21 @@ declare var bootstrap: any; // Deklaracja Bootstrap dla TypeScript
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css'
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit{
   public images: string[] = [];
   public selectedImage: string = '';
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.images = this.dataService.getAll().map(post => post.image);
+    this.dataService.getAll().subscribe({
+      next: (posts: any) => {
+        this.images = posts.map((post: any) => post.image);
+      },
+      error: (err) => {
+        console.error("Błąd pobierania", err);
+      }
+    });
   }
 
   openImage(image: string) {

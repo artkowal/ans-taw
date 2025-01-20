@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h3>Dodaj nowy post</h3>
-    <form (ngSubmit)="addPost()" class="p-4 border rounded shadow-sm bg-light">
+    <form (submit)="addPost($event)" class="p-4 border rounded shadow-sm bg-light">
         <div class="mb-3">
             <label for="title" class="form-label">Tytuł:</label>
             <input [(ngModel)]="newPost.title" name="title" id="title" type="text" class="form-control" required />
@@ -13,7 +13,7 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">Zdjęcie:</label>
-            <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" />
+            <input [(ngModel)]="newPost.image" name="image" id="image" type="text" class="form-control" placeholder="https://example.com/obraz.jpg" />
         <div *ngIf="newPost.image" class="mt-2">
             <img [src]="newPost.image" alt="Podgląd zdjęcia" class="img-thumbnail" width="200" />
         </div>

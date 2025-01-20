@@ -16,47 +16,27 @@ export class AddPostComponent {
   public newPost = {
     title: '',
     text: '',
-    image: 'https://via.placeholder.com/150',
+    image: '',
   };
 
   public selectedFile: File | null = null;
 
   constructor(private dataService: DataService) {}
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')) {
-      this.selectedFile = file;
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.newPost.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert('Proszę wybrać plik graficzny (jpg, png, gif itp.)');
-      this.selectedFile = null;
+  addPost(event: Event) {
+    event.preventDefault();
+    if (this.newPost.title.trim() && this.newPost.text.trim()) {
+      this.dataService.addPost(this.newPost.title.trim(), this.newPost.text.trim(), this.newPost.image.trim())
+        .subscribe({
+          next: () => {
+            alert('Post wysłany pomyślnie');
+            this.newPost = { title: '', text: '', image: '' };  // Resetowanie formularza po dodaniu posta
+            this.postAdded.emit();  // Emitowanie eventu po dodaniu posta
+          },
+          error: (err) => {
+            console.error('Błąd podczas wysyłania postu:', err);  // Obsługa błędów
+          }
+        });
     }
-  }
-
-  addPost() {
-    if (!this.newPost.title.trim() || !this.newPost.text.trim()) {
-      alert('Tytuł i treść posta są wymagane!');
-      return;
-    }
-
-    if (!this.selectedFile) {
-      this.newPost.image = 'https://via.placeholder.com/150';
-    }
-
-    this.dataService.addPost(this.newPost);
-
-    this.newPost = {
-      title: '',
-      text: '',
-      image: 'https://via.placeholder.com/150',
-    };
-    this.selectedFile = null;
-
-    this.postAdded.emit();
   }
 }
