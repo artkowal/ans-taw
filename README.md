@@ -12,3 +12,4 @@
 - **Lab 8** - Walidacja. Autoryzacja i autentykacja;
 - **Lab 9** - Narzędzie Angular-cli. Tworzenie komponentów, przekazywanie danych pomiędzy komponentami. Wykorzystanie serwisów;
 - **Lab 10** - Angular. Tworzenie komponentów, przekazywanie danych między komponentami. Wykorzystanie serwisów. Mechanizm output. Dyrektywy
+- **Lab 11** - Autentykacja i autoryzacja na przykładzie stosu MongoExpressAngularNode
