@@ -13,18 +13,30 @@ class PasswordService {
         return result;
     }
 
-    public async authorize(userId: string, password: string) {
+    public async authorize(userId: string, password: string): Promise<void> {
         try {
-            const result = await PasswordModel.findOne({ userId: userId, password: password });
-            if (result) {
-                return true;
+            const pass = await PasswordModel.findOne({ userId: userId });
+            if (!pass) {
+                throw new Error('Unauthorized'); 
             }
+    
+            const user = await UserModel.findOne({ _id: userId });
+            if (!user) {
+                throw new Error('User not found'); 
+            }
+    
+            const match = await this.passwordsMatch(password, pass.password);
+            if (!match) {
+                throw new Error('Unauthorized'); 
+            }
+    
         } catch (error) {
-            console.error('Wystąpił błąd podczas tworzenia danych:', error);
-            throw new Error('Wystąpił błąd podczas tworzenia danych');
+            console.error('Wystąpił błąd podczas autoryzacji:', error);
+            throw new Error('Unauthorized'); 
         }
-        
     }
+    
+    
 
     public async hashPassword(password: string): Promise<string> {
         const saltRounds = 10;

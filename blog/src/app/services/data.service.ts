@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 let posts = [
   {
@@ -74,15 +73,15 @@ let posts = [
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + '/api/posts');
+  getAll(){
+    return this.http.get(this.url + '/api/posts');
   }
 
-  getById(id: string): Observable<any[]>{
-    return this.http.get<any[]>(this.url + '/api.posts/' + id);
+  getById(id: string){
+    return this.http.get(this.url + '/api/post/' + id);
   }
 
-  addPost(title: string, text: string, image: string): Observable<any[]> {
+  addPost(title: string, text: string, image: string){
     const newPost = {
       title,
       text,
@@ -92,7 +91,7 @@ let posts = [
 
     posts.push(newPost);
 
-    return this.http.post<any[]>(this.url + '/api/post', newPost);
+    return this.http.post(this.url + '/api/post', newPost);
   }
 
   // reloadPage(): void {

@@ -17,11 +17,14 @@ export class FilterTextPipe implements PipeTransform {
     filterText = filterText.toLowerCase();
 
     return value.filter(val => {
-      if (!val.text){
+      if (!val.text && !val.title){
       return false;
       }
 
-      return val.text.toLowerCase().includes(filterText);
+      const textMatches = val.text && val.text.toLowerCase().includes(filterText);
+      const titleMatches = val.title && val.title.toLowerCase().includes(filterText);
+
+      return textMatches || titleMatches;
     });
   }
 }

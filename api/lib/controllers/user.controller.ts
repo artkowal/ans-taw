@@ -22,28 +22,32 @@ class UserController implements Controller {
     private initializeRoutes() {
         this.router.post(`${this.path}/create`, this.createNewOrUpdate);
         this.router.post(`${this.path}/auth`, this.authenticate);
-        this.router.delete(`${this.path}/logout/:userId`, auth, this.removeHashSession);
+        this.router.delete(`${this.path}/logout/:userId`, this.removeHashSession);
 
         this.router.post(`${this.path}/reset/:userId`, auth,  this.resetPassword);
         this.router.patch(`${this.path}/change-password`, auth, this.changePassword);
     }
 
     private authenticate = async (request: Request, response: Response, next: NextFunction) => {
-        const {login, password} = request.body;
-
+        const { login, password } = request.body;
+    
         try {
             const user = await this.userService.getByEmailOrName(login);
             if (!user) {
-                response.status(401).json({error: 'Unauthorized'});
+                return response.status(401).json({ error: 'Unauthorized: Invalid login or password.' });
             }
-            await this.passwordService.authorize(user.id, await this.passwordService.hashPassword(password));
+    
+            await this.passwordService.authorize(user._id.toString(), password);
+    
             const token = await this.tokenService.create(user);
-            response.status(200).json(this.tokenService.getToken(token));
+    
+            return response.status(200).json(this.tokenService.getToken(token));
         } catch (error) {
-            console.error(`Validation Error: ${error.message}`);
-            response.status(401).json({error: 'Unauthorized'});
+            console.error(`Authentication Error: ${error.message}`);
+            return response.status(401).json({ error: 'Unauthorized: Invalid login or password.' });
         }
     };
+    
 
     private createNewOrUpdate = async (request: Request, response: Response, next: NextFunction) => {
         const userData = request.body;
@@ -65,14 +69,19 @@ class UserController implements Controller {
     };
     
     private removeHashSession = async (request: Request, response: Response, next: NextFunction) => {
-        const {userId} = request.params;
+        const { userId } = request.params;
     
         try {
             const result = await this.tokenService.remove(userId);
-            response.status(200).send(result);
+    
+            if (result.deletedCount === 0) {
+                return response.status(404).json({ error: 'No active session found for the user.' });
+            }
+    
+            return response.status(200).json({ message: 'Session successfully removed.' });
         } catch (error) {
-            console.error(`Validation Error: ${error.message}`);
-            response.status(401).json({error: 'Unauthorized'});
+            console.error(`Session Removal Error: ${error.message}`);
+            return response.status(500).json({ error: 'Failed to remove session. Please try again later.' });
         }
     };
 

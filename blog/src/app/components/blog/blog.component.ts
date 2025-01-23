@@ -26,7 +26,7 @@ export class BlogComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getPosts();
+    this.getAll();
   }
 
   getAll(){

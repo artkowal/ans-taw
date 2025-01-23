@@ -12,9 +12,8 @@ import { CommentsSectionComponent } from '../comments-section/comments-section.c
   styleUrl: './blog-item.component.css'
 })
 export class BlogItemComponent {
-  @Input() id?: number;
+  @Input() id?: string;
   @Input() title?: string;
   @Input() image?: string;
   @Input() text?: string;
-
 }

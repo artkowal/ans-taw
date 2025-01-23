@@ -1,6 +1,9 @@
+.container{
+    margin: 30px 0;
+}
 .no-results {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px;
     font-size: 18px;
     color: #888;
 }
