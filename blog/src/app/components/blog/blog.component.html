@@ -1,0 +1,18 @@
+<button class="btn btn-primary" (click)="refreshPosts()">Odśwież posty</button>
+
+<div class="container">
+    <div *ngIf="(items$ | filter:filterText).length === 0" class="no-results">
+        Brak wyników spełniających kryteria wyszukiwania
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4" >
+        <div  *ngFor="let item of items$ | filter:filterText">
+            <blog-item 
+            [image]="item.image" 
+            [title]="item.title"
+            [text]="item.text"
+            [id]="item._id">
+            </blog-item>
+        </div>
+    </div>
+</div>

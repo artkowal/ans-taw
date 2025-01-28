@@ -1,0 +1,14 @@
+<div class="comments-section">
+    <h3>Komentarze</h3>
+    <div *ngFor="let comment of getComments(); let i = index" class="border-bottom pb-3 mb-3">
+        <p><strong>{{ i + 1 }}.</strong> {{ comment }}</p>
+    </div>
+    <form (ngSubmit)="addComment()">
+        <div class="form-group">
+            <textarea [(ngModel)]="commentText" name="commentText" class="form-control" rows="3" placeholder="Dodaj komentarz"></textarea>
+        </div>
+        <div class="buttonContainer">
+        <button type="submit" class="btn btn-primary mt-2">Dodaj komentarz</button>
+        </div>
+    </form>
+</div>

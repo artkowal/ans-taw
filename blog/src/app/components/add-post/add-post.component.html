@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Dodaj nowy post</h2>
+    <form (submit)="addPost($event)">
+        <div class="mb-3">
+            <label for="title" class="form-label">Tytuł:</label>
+            <input [(ngModel)]="newPost.title" name="title" id="title" type="text" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="text" class="form-label">Treść:</label>
+            <textarea [(ngModel)]="newPost.text" name="text" id="text" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Zdjęcie:</label>
+            <input [(ngModel)]="newPost.image" name="image" id="image" type="text" class="form-control" placeholder="https://example.com/obraz.jpg" />
+        <div *ngIf="newPost.image" class="mt-2">
+            <img [src]="newPost.image" alt="Podgląd zdjęcia" class="img-thumbnail" width="200" />
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Dodaj Post</button>
+    </form>
+</div>

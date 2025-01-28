@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Galeria Zdjęć</h2>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+      <div class="col" *ngFor="let image of images">
+        <div class="card h-100">
+            <img [src]="image" class="card-img-top img-thumbnail" alt="Obraz posta" (click)="openImage(image)" style="cursor: pointer;">
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">Podgląd Obrazu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+        </div>
+        <div class="modal-body text-center">
+            <img [src]="selectedImage" class="img-fluid" alt="Wybrane zdjęcie">
+        </div>
+        </div>
+    </div>
+</div>

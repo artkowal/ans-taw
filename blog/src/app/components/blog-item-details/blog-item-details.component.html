@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>{{ title }}</h1>
+    <img [src]="image" alt="Blog image" class="image-class">
+    <p>{{ text }}</p>
+
+    <div class="buttons">
+        <button (click)="navigateToBlog()" class="btn btn-primary">Strona główna</button>
+        <button (click)="deletePost()" class="btn btn-danger">Usuń post</button>
+    </div>
+    
+</div>
