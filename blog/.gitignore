@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+/.angular/cache/19.0.6./blog
+/.vscode
 
 # Node
 /node_modules
