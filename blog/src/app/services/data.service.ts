@@ -81,6 +81,10 @@ let posts = [
     return this.http.get(this.url + '/api/post/' + id);
   }
 
+  deleteById(id: string){
+    return this.http.delete(this.url + '/api/post/' + id);
+  }
+
   addPost(title: string, text: string, image: string){
     const newPost = {
       title,

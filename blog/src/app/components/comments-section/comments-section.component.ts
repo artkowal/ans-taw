@@ -11,12 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 
 export class CommentsSectionComponent {
-  @Input() postId!: number;
+  @Input() postId!: string;
   commentText: string = '';
 
   constructor(public commentsService: CommentsService) {}
 
   addComment() {
+    console.log('Adding comment to postId:', this.postId);
     if (this.commentText.trim()){
       this.commentsService.addComment(this.postId, this.commentText);
       this.commentText = '';

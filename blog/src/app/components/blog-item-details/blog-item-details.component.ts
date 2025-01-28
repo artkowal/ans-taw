@@ -26,6 +26,7 @@ export class BlogItemDetailsComponent implements OnInit {
       const id = params.get('_id');
       console.log('Debug ID from URL:', id); 
       if (id) {
+        this.id = id;
         this.dataService.getById(id).subscribe(
           (res: any) => {
             console.log('Response from API:', res);
@@ -47,5 +48,21 @@ export class BlogItemDetailsComponent implements OnInit {
 
   navigateToBlog() {
     this.router.navigate(['/blog']);
+  }
+
+  deletePost() {
+    const confirmDelete = confirm("Czy na pewno chcesz usunąć ten post?");
+    
+    if (confirmDelete) {
+      this.dataService.deleteById(this.id).subscribe(
+        () => {
+          this.router.navigate(['/blog']);
+        },
+        (error) => {
+          console.error('Błąd podczas usuwania posta:', error);
+          alert('Wystąpił błąd podczas usuwania posta. Spróbuj ponownie później.');
+        }
+      );
+    }
   }
 }

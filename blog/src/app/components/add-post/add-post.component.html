@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <h2 class="mb-4">Dodaj nowy post</h2>
-    <form (submit)="addPost($event)" class="p-4 border rounded shadow-sm bg-light">
+    <form (submit)="addPost($event)">
         <div class="mb-3">
             <label for="title" class="form-label">Tytuł:</label>
             <input [(ngModel)]="newPost.title" name="title" id="title" type="text" class="form-control" required />

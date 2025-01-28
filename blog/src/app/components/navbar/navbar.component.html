@@ -1,33 +1,51 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Blog</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/blog']">Blog</a>
-          </li>
-          <li *ngIf="authService.isLoggedIn()" class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/galeria']">Galeria</a>
-          </li>
-          <li *ngIf="authService.isLoggedIn()" class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/add-post']">Add post</a>
-          </li>
-        </ul>
-        <div class="d-flex">
-          <div class="d-flex" *ngIf="!authService.isLoggedIn()">
-            <a class="nav-link" href="#" [routerLink]="['/login']">Login</a>
-            <a class="nav-link edit" href="#" [routerLink]="['/signup']">SignUp</a>
-          </div>
-          <button *ngIf="authService.isLoggedIn()" class="btn nav-link" (click)="signOut()">Wyloguj</button>
+  <div class="container-fluid">
+    <a class="navbar-brand nav-link" href="#">
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    viewBox="0 0 290 290" xml:space="preserve" width="30" height="30" class="logo">
+    <style>
+      .logo {
+        fill: #000000;
+        transition: fill 0.3s ease-in-out;
+      }
+      .logo:hover {
+        fill: #007bff; 
+      }
+    </style>
+    <path d="M289.154,128.48c0.11-1.746,0.282-9.765-5.219-15.765c-3.721-4.058-8.987-6.115-15.646-6.115l-16.642-0.022
+      c-6.894,0-9.791-8.219-13.743-21.755c-0.284-0.974-0.568-1.949-0.857-2.92c-6.552-22.066-17.825-42.377-31.742-57.189
+      C190.115,8.545,173.074,0,156.021,0H94.195C42.693,0,0.793,41.937,0.793,93.484v103.209c0,51.45,41.9,93.307,93.402,93.307h101.583
+      c51.229,0,93.14-41.845,93.429-93.311L289.154,128.48z M80.818,73.106h61.331c11.046,0,20,8.954,20,20s-8.954,20-20,20H80.818
+      c-11.046,0-20-8.954-20-20S69.772,73.106,80.818,73.106z M205.431,214.225H80.818c-11.046,0-20-8.954-20-20s8.954-20,20-20h124.612
+      c11.046,0,20,8.954,20,20S216.477,214.225,205.431,214.225z"/>
+  </svg>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#" [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/blog']" routerLinkActive="active-link">Blog</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/galeria']" routerLinkActive="active-link">Galeria</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn()" class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/add-post']" routerLinkActive="active-link">Dodaj post</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <div class="d-flex" *ngIf="!authService.isLoggedIn()">
+          <a class="btn btn-light edit" href="#" [routerLink]="['/login']">Zaloguj</a>
+          <a class="btn btn-primary" href="#" [routerLink]="['/signup']">Zarejestruj</a>
         </div>
+        <button *ngIf="authService.isLoggedIn()" class="btn btn-danger" (click)="signOut()">Wyloguj</button>
       </div>
     </div>
+  </div>
 </nav>
-  

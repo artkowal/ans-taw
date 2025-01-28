@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommentsService {
-  private comments: { [postId: number]: string[] } = {};
+  private comments: { [postId: string]: string[] } = {};
 
-  getCommentsByPostId(postId: number): string[] {
+  getCommentsByPostId(postId: string): string[] {
     return this.comments[postId] || [];
   }
 
-  addComment(postId: number, comment: string): void {
+  addComment(postId: string, comment: string): void {
     if (!this.comments[postId]) {
       this.comments[postId] = [];
     }
