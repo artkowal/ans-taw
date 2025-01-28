@@ -60,10 +60,3 @@
       transform: translateX(-50%);
     }
   }
-
-  footer{
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
