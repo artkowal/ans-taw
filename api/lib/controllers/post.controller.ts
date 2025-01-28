@@ -66,9 +66,7 @@ class PostController implements Controller {
 
     private deleteOneData = async (request: Request, response: Response, next: NextFunction) => {
         const { id } = request.params;
-
-        await this.dataService.deleteById(id);
-        response.sendStatus(200);
+        response.status(200).json(await this.dataService.deleteById(id));
     };
 
     private deleteAllData = async(request: Request, response: Response, next: NextFunction) => {
